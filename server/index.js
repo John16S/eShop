@@ -3,13 +3,16 @@ require('dotenv').config()  //чтоб сервер мог считывать ф
 const express = require('express')  //импортируем express
 const sequelize = require('./db.js')   //импортируем объект из файла db.js
 const models = require('./models/models.js')   //импортируем модели из файла models.js
-const cors = require('cors')    //импортируем 'cors'
+const cors = require('cors')    //импортируем 'cors' (Для обращения из браузера к серверу)
+const router = require('./routers/index.js')    //импортиреум главный роутер (в ктрм объедены все роутеры)
 
 const PORT = process.env.PORT || 5000    //задаём порт (берйм значение из файла ".env" или же назначаем 5000)
 
 const app = express()   // с этой функции начинаестя наше приложение
 app.use(cors()) //в функ 'use' передаём функ. 'cors', для запросов из браузера в БД
 app.use(express.json()) //чтоб приложение могло парсить 'json' формат
+app.use('/api', router)
+
 
 /*------------------Get методы-------------------- */
 //функ. 'get' - передаём 1 параметром 'url',
