@@ -1,3 +1,5 @@
+const ApiError = require('../error/ApiError')
+
 class UserController{
     async registration(req, res){
 
@@ -6,8 +8,11 @@ class UserController{
 
     }
     //функция для проверки авторизации пользователья
-    async authorizationCheck(req, res){
+    async authorizationCheck(req, res, next){
         const {id} = req.query
+        if (!id){
+            return next(ApiError.badRequest("Не задан ID"))
+        }
         res.json(id)
         //res.json({message: 'User authorization and all checked!'})
     }
