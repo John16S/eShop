@@ -4,7 +4,6 @@ class ApiError extends Error{
         super();    //вызываем родительский конструктор
         this.status = status
         this.message = message
-
     }
 
     //Статические функции можно вызывать без создание объекта класса
@@ -20,5 +19,4 @@ class ApiError extends Error{
         return new ApiError(403, message)
     }
 }
-
 module.exports = ApiError //экпортируем этот класс

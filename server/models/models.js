@@ -29,7 +29,7 @@ const Good = sequelize.define('good',{
     size: {type: DataTypes.STRING, allowNull: false},
     image: {type: DataTypes.STRING},
     quantity: {type: DataTypes.INTEGER}
-    //subcategory_id
+    //subcategorySubCategoryId
 })
 
 const Category = sequelize.define('category',{
@@ -37,10 +37,10 @@ const Category = sequelize.define('category',{
     name: {type: DataTypes.STRING, unique: true}
 })
 
-const SubCategory = sequelize.define('subCategory',{
+const Subcategory = sequelize.define('subcategory',{
     subCategory_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, unique: true}
-    //category_id
+    //categoryCategoryId
 })
 
 User.hasOne(Basket)
@@ -52,11 +52,11 @@ BasketGood.belongsTo(Basket)
 Good.hasMany(BasketGood)
 BasketGood.belongsTo(Good)
 
-SubCategory.hasMany(Good)
-Good.belongsTo(SubCategory)
+Subcategory.hasMany(Good)
+Good.belongsTo(Subcategory)
 
-Category.hasMany(SubCategory)
-SubCategory.belongsTo(Category)
+Category.hasMany(Subcategory)
+Subcategory.belongsTo(Category)
 
 //экпортируем эти модели, чтоб в других файлах можно было их использовать
 module.exports = {
@@ -64,6 +64,6 @@ module.exports = {
     Basket,
     BasketGood,
     Good,
-    SubCategory,
+    Subcategory,
     Category
 }

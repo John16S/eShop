@@ -1,4 +1,4 @@
-const ApiError = require('../error/ApiError')
+const ApiError = require('../error/ApiError')   //Импортируем класс для обработки ошибок
 
 class UserController{
     async registration(req, res){
