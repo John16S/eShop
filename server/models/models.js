@@ -12,13 +12,13 @@ const User = sequelize.define('user',{
 
 const Basket = sequelize.define('basket',{
     basket_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
-    //user_id - Sequelize подставит сам, при описание типов связи
+    //userUserId - Sequelize подставит сам, при описание типов связи
 })
 
 const BasketGood = sequelize.define('basketGood',{
     basketGood_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
-    //basket_id
-    //good_id
+    //basketBasketId
+    //goodGoodId
 })
 
 const Good = sequelize.define('good',{

@@ -1,6 +1,7 @@
 const Router = require('express')   //импортируем 'Router' из 'express'
 const router = new Router() //создаём объект 'Router'
 const userController = require('../controllers/userController.js') //импортируем котроллер
+const authMiddleware = require('../middleware/authMiddleware.js')
 
 //методы по работе с пользователями
 //1 парам. - 'url' по ктрм. отрабатывает роутер
@@ -11,7 +12,7 @@ router.post('/registration', userController.registration) //userController.regis
 //авторизация пользователья
 router.post('/login', userController.login)
 //проверяет, авторизован пользователь или нет (по JWT токену)
-router.get('/authorization', userController.authorizationCheck)
+router.get('/authorization', authMiddleware, userController.authorizationCheck)
 
 //--router.delete()-- метод удаление доработать
 
