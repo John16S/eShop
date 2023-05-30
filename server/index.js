@@ -7,14 +7,17 @@ const cors = require('cors')    //импортируем 'cors' (Для обра
 const router = require('./routers/index.js')    //импортиреум главный роутер (в ктрм объедены все роутеры)
 const errorHandler = require('./middleware/ErrorHandlingMiddleware.js') //импортируем обработчик ошибок
 const fileUpload =require('express-fileupload') //пакет для работы с картинками
+const path = require('path')
 
 const PORT = process.env.PORT || 5000    //задаём порт (берйм значение из файла ".env" или же назначаем 5000)
 
 const app = express()   // с этой функции начинаестя наше приложение
 app.use(cors()) //в функ 'use' передаём функ. 'cors', для запросов из браузера в БД
 app.use(express.json()) //чтоб приложение могло парсить 'json' формат
-app.use('/api', router)
+app.use(express.static(path.resolve(__dirname, 'static'))) //чтоб раздавать статические файлы из папки static
 app.use(fileUpload({})) //в качестве параметра - пустой объект с опциями
+app.use('/api', router)
+
 
 //Middleware ктр работает с ошибками, объязательно должен идти и зарегистрироватся в самом конце
 //Обработка ошибок, это последний middleware

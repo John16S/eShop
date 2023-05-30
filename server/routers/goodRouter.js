@@ -12,7 +12,7 @@ router.post('/', goodController.create)
 //получает товары
 router.get('/', goodController.getAll)
 //получает конкретный товар (для странички 'подробнее')
-router.get('/:id', goodController.getById)
+router.get('/:good_id', goodController.getById)
 //--router.delete()-- метод удаление доработать
 
 module.exports = router //экспортируем объект 'router'
